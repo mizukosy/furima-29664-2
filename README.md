@@ -41,22 +41,22 @@ Things you may want to cover:
 
 - has_many :items
 - has_many :coments
-- has_one  :purchase
+- has_many :purchases
 
 ## items テーブル
 
-| Column                  | Type       | Options                       |
-| ----------------------- | ---------- | ----------------------------- |
-| item_name               | string     | null: false                   |
-| item_text               | text       | null: false                   |
-| item_category_id        | integer    | null: false                   |
-| item_status_id          | integer    | null: false                   |
-| item_price              | integer    | null: false                   |
-| item_price_fee          | integer    |                               |
-| item_delivery_chager_id | integer    | null: false                   |
-| item_delivery_area_id   | integer    | null: false                   |
-| item_delivery_days_id   | integer    | null: false                   |
-| user                    | references | null: false, forgen_key: true |
+| Column             | Type       | Options                       |
+| ------------------ | ---------- | ----------------------------- |
+| name               | string     | null: false                   |
+| text               | text       | null: false                   |
+| category_id        | integer    | null: false                   |
+| status_id          | integer    | null: false                   |
+| price              | integer    | null: false                   |
+| price_fee          | integer    |                               |
+| delivery_chager_id | integer    | null: false                   |
+| delivery_area_id   | integer    | null: false                   |
+| delivery_days_id   | integer    | null: false                   |
+| user               | references | null: false, forgen_key: true |
 
 ### Association
 
