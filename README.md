@@ -30,7 +30,6 @@ Things you may want to cover:
 | ---------------- | ------ | ----------- |
 | nickname         | string | null: false |
 | password         | string | null: false |
-| password_check   | string | null: false |
 | email            | string | null: false |
 | family_name      | string | null: false |
 | first_name       | string | null: false |
@@ -46,19 +45,18 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column               | Type       | Options                       |
-| -------------------- | ---------- | ----------------------------- |
-| item_name            | string     | null: false                   |
-| item_image           | string     | null: false                   |
-| item_text            | text       | null: false                   |
-| item_category        | integer    | null: false                   |
-| item_status          | integer    | null: false                   |
-| item_price           | integer    | null: false                   |
-| item_price_fee       | integer    |                               |
-| item_delivery_chager | integer    | null: false                   |
-| item_delivery_area   | integer    | null: false                   |
-| item_delivery_days   | integer    | null: false                   |
-| user                 | references | null: false, forgen_key: true |
+| Column                  | Type       | Options                       |
+| ----------------------- | ---------- | ----------------------------- |
+| item_name               | string     | null: false                   |
+| item_text               | text       | null: false                   |
+| item_category_id        | integer    | null: false                   |
+| item_status_id          | integer    | null: false                   |
+| item_price              | integer    | null: false                   |
+| item_price_fee          | integer    |                               |
+| item_delivery_chager_id | integer    | null: false                   |
+| item_delivery_area_id   | integer    | null: false                   |
+| item_delivery_days_id   | integer    | null: false                   |
+| user                    | references | null: false, forgen_key: true |
 
 ### Association
 
@@ -85,7 +83,6 @@ Things you may want to cover:
 | ------ | ---------- | ----------------------------- |
 | user   | references | null: false, forgen_key: true |
 | item   | references | null: false, forgen_key: true |
-<!-- referenseで作るかどうかを検討 -->
 
 ### Association
 
