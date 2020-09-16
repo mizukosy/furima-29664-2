@@ -3,7 +3,6 @@
 class DeviseCreateUsers < ActiveRecord::Migration[6.0]
   def change
     create_table :users do |t|
-
       ## Database authenticatable
       t.string :nickname,           null: false
       t.string :password,           null: false
@@ -14,7 +13,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :family_name_kana,   null: false
       t.string :first_name_kana,    null: false
       t.date :birthday,             null: false
-
+      
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
