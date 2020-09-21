@@ -1,6 +1,5 @@
 <%= render "shared/second-header"%>
 
-<%# 「新登録のパス」devise/registrations#createへのパスを確認 %>
 <%= form_with model:@user , url: '/users', class: 'registration-main', local: true do |f| %>
 <div class='form-wrap'>
   <div class='form-header'>
@@ -9,8 +8,8 @@
     </h1>
   </div>
 
-  <% render 'shared/error_messages', model: f.object %>
- 
+  <%= render 'devise/shared/error_messages', model: f.object %>
+
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">ニックネーム</label>
