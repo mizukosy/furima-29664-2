@@ -8,15 +8,6 @@ RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
     context '新規登録がうまくいく時' do
       it '9項目入力により登録される' do
-        @user.nickname
-        @user.email
-        @user.password
-        @user.password_confirmation
-        @user.family_name
-        @user.first_name
-        @user.family_name_kana
-        @user.first_name_kana
-        @user.birthday
         expect(@user).to be_valid
       end
       it 'password 6文字以上 && 英数字混合であれば登録される' do
@@ -60,9 +51,15 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('パスワードは6文字以上で入力してください', 'パスワード英数字を含めて設定してください')
       end
-      it 'passwordが半角英数字混合でないと登録できない' do
+      it 'passwordが数字のみでは登録できない' do
         @user.password = '111111'
         @user.password_confirmation = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('パスワード英数字を含めて設定してください')
+      end
+      it 'passwordが英語のみでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include('パスワード英数字を含めて設定してください')
       end
@@ -101,6 +98,16 @@ RSpec.describe User, type: :model do
         @user.first_name_kana = nil
         @user.valid?
         expect(@user.errors.full_messages).to include('名前のフリガナを入力してください', '名前のフリガナ全角カタカナで入力して下さい')
+      end
+      it 'family_name_kanaが半角カタカナでは登録できない' do
+        @user.family_name_kana = "ﾀﾞﾐｰ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include('名字のフリガナ全角カタカナで入力して下さい')
+      end
+      it 'first_name_kanaが半角カタカナでは登録できない' do
+        @user.first_name_kana = "ﾀﾞﾐｰ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include('名前のフリガナ全角カタカナで入力して下さい')
       end
       it 'birthdayが空では登録できない' do
         @user.birthday = nil
