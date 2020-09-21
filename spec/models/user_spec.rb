@@ -64,10 +64,10 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('パスワード英数字を含めて設定してください')
       end
       it 'passwordが入力されていてもpassword_confirmationが空ならば登録されない' do
-        @user.password
-        @user.password = nil
+        @user.password = 'aaa111'
+        @user.password_confirmation = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include('パスワードを入力してください', 'パスワード英数字を含めて設定してください', 'パスワード（確認用）とパスワードの入力が一致しません')
+        expect(@user.errors.full_messages).to include('パスワード（確認用）英数字を含めて設定してください')
       end
       it '苗字が空では登録できない' do
         @user.family_name = nil

@@ -11,7 +11,7 @@ class User < ApplicationRecord
     validates :birthday
 
     PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]{6,}+\z/i.freeze
-    validates_format_of :password, with: PASSWORD_REGEX, message: '英数字を含めて設定してください'
+    validates_format_of :password, :password_confirmation, with: PASSWORD_REGEX, message: '英数字を含めて設定してください'
 
     with_options format: { with: /\A[ぁ-んァ-ン一-龥]/, message: '全角で入力して下さい' } do
       validates :family_name
