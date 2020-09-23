@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :new]
 
   def index
-    # @item = Item.all
+    @item = Item.all
   end
 
   def new
@@ -10,14 +10,13 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.create(item_params)
     if @item.save
-      redirect_to items_path(@item)
+      redirect_to root_path(@item)
     else
       render :new
     end
   end
-
 
   private
 
@@ -30,7 +29,7 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(
       :name, :text, :category_id, :status_id, :price, :image,
-      :delivery_chager_id, :delivery_area_id, :delivery_days_id, :user
+      :delivery_chager_id, :delivery_area_id, :delivery_days_id,
     ).merge( user_id:current_user.id)
   end
 end
