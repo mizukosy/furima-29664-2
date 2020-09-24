@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
 
   describe '商品登録' do
     context '商品登録がうまくいく時' do
-      it '9項目入力により登録される' do
+      it '8項目入力 && userが紐づいている場合、登録される' do
         expect(@item).to be_valid
       end
       it 'idが1ではないければ登録する事ができる' do
