@@ -25,7 +25,7 @@ RSpec.describe Item, type: :model do
     end
 
     context '商品登録がうまくいかない時' do
-      it 'ameが空では登録できない' do
+      it 'nameが空では登録できない' do
         @item.name = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('商品名を入力してください')
@@ -40,7 +40,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('商品の説明は1000文字以内で入力してください')
       end
-      it '画像かなければ登録できない' do
+      it '画像がなければ登録できない' do
         @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('商品画像を入力してください')
@@ -69,6 +69,11 @@ RSpec.describe Item, type: :model do
         @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include('価格は10000000より小さい値にしてください')
+      end
+      it 'priceが全角数字で入力されている場合は登録できない' do
+        @item.price = '１０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('価格は数値で入力してください')
       end
       it 'delivery_chager_idが1でｈ登録されない' do
         @item.delivery_chager_id = "1"
