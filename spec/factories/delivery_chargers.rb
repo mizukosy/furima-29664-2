@@ -1,4 +1,4 @@
 FactoryBot.define do
-  factory :delivery_charger do
+  factory :delivery_chager do
   end
 end
