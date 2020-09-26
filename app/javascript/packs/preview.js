@@ -3,7 +3,9 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
     const ImageList = document.getElementById('image-picture');
     const createImageHTML = (blob) => {
       const imageElement = document.createElement('div');
+      const imageChange = document.createElement('class');
       const blobImage = document.createElement('img');
+      blobImage.setAttribute('class','image-picture');
       blobImage.setAttribute('src', blob);
 
       imageElement.appendChild(blobImage);
