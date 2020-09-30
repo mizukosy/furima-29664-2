@@ -3,13 +3,16 @@ class PurchasesController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
+    @order = ItemOrder.new
   end
 
   def create
-    @purchases = Purchase.new(purchase_params)
-    if @Purchase.valid?
-      @purchase.save
-      return redirect_to roor_path
+    @item = Item.find(params[:item_id])
+    @order = ItemOrder.new(order_params)
+    if @order.valid?
+      pay_item
+      @order.create
+      return redirect_to root_path
     else
       render 'index'
     end
@@ -17,16 +20,18 @@ class PurchasesController < ApplicationController
 
   private
 
-  def purchase_params
-    params.require(:purchase).permit(:current_user.id).merge(token: params[:token])
+  def order_params
+    params.require(:item_order).permit(:user_id, :item_id, :post_code, :prefecture_id, :city,
+                                       :block, :building, :telephone).merge(token: params[:token], user_id: current_user.id)
   end
 
-  def item_params
-    params.permit(:price, :item.id).marge(user_id: user.id)
-  end
-
-  def ship_address_params
-    params.permit(:post_code, :prefecture, :city, :block, :building, :telephone, :purchase).marge(purchase_id: purchase.id)
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: @order.token,
+      currency: 'jpy'
+    )
   end
 
 end
