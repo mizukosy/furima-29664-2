@@ -71,7 +71,6 @@ RSpec.describe ItemOrder, type: :model do
       it '電話番号が11桁を超える場合は登録できない' do
         @item_order.telephone = '111111111111'
         @item_order.valid?
-
         expect(@item_order.errors.full_messages).to include('電話番号は不正な値です')
       end
       it '電話番号が全角数字の場合、登録できない' do
