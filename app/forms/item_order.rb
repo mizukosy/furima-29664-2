@@ -12,8 +12,8 @@ class ItemOrder
   end
 
   def save
-    Purchase.create(user_id: user_id, item_id: item_id)
-    ShipAddress.create(post_code: post_code,prefecture_id: prefecture_id,city: city,
+    purchase = Purchase.create(user_id: user_id, item_id: item_id)
+    ShipAddress.create(post_code: post_code, purchase_id: purchase.id, city: city, prefecture_id: prefecture_id,
                       block: block,building: building, telephone: telephone)
   end
 
