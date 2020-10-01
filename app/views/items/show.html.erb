@@ -23,19 +23,16 @@
       </span>
     </div>
 
-    <%# ログインユーザーと出品ユーザーで表示する内容の分岐 %>
+    <%# 出品ユーザーである場合と、購入されている場合での分岐 %>
     <% if user_signed_in? && current_user.id == @item.user.id %>
       <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
-    <% elsif user_signed_in? %>
+    <% elsif user_signed_in? && @item.purchase == nil %>
       <%# 商品が売れていない場合はこちらを表示しましょう %>
       <%= link_to '購入画面に進む', item_purchases_path(@item.id, current_user.id), class:"item-red-btn"%>
       <%# //商品が売れていない場合はこちらを表示しましょう %>
-    <% else %>
-      <%= link_to '購入前の新規登録はこちら', new_user_registration_path, class:"item-red-btn" %>
     <% end %>
-
 
     <div class="item-explain-box">
       <span><%= @item.text %></span>
