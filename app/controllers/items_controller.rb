@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :move_to_show, only: [:edit, :update, :destroy]
   before_action :select_item, only: [:show, :edit, :update, :destroy]
 
-
   def index
     @item = Item.all.order('created_at DESC')
     @purchase = Purchase
