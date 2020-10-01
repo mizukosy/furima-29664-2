@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_show
-    # @item = Item.find(params[user.id])
+    @item = Item.find(params[:id])
     redirect_to action: :show if current_user.id != @item.user_id
   end
 
