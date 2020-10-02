@@ -53,7 +53,7 @@ Things you may want to cover:
 | price              | integer    | null: false                   |
 | price_fee          | integer    |                               |
 | delivery_chager_id | integer    | null: false                   |
-| delivery_area_id   | integer    | null: false                   |
+| prefecture_id      | integer    | null: false                   |
 | delivery_days_id   | integer    | null: false                   |
 | user               | references | null: false, forgen_key: true |
 
@@ -91,15 +91,15 @@ Things you may want to cover:
 
 ## ship_addresses テーブル
 
-| Column     | Type       | Options                      |
-| ---------- | ---------- | ---------------------------- |
-| post_code  | string     | null: false                  |
-| prefecture | integer    | null: false                  |
-| city       | string     | null: false                  |
-| block      | string     | null: false                  |
-| building   | string     |                              |
-| telephone  | string     | null: false                  |
-| purchase   | references | null: false forgen:key: true |
+| Column        | Type       | Options                       |
+| ------------- | ---------- | ----------------------------- |
+| post_code     | string     | null: false                   |
+| prefecture_id | integer    | null: false                   |
+| city          | string     | null: false                   |
+| block         | string     | null: false                   |
+| building      | string     |                               |
+| telephone     | string     | null: false                   |
+| purchase      | references | null: false, forgen_key: true |
 
 
 ### Association

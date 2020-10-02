@@ -63,8 +63,8 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('配送料の負担を選択してください')
       end
-      it 'delivery_area_idが1でｈ登録されない' do
-        @item.delivery_area_id = 1
+      it 'prefecture_idが1でｈ登録されない' do
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('発送元の地域を選択してください')
       end

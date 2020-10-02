@@ -3,9 +3,9 @@ class ItemsController < ApplicationController
   before_action :move_to_show, only: [:edit, :update, :destroy]
   before_action :select_item, only: [:show, :edit, :update, :destroy]
 
-
   def index
     @item = Item.all.order('created_at DESC')
+    @purchase = Purchase
   end
 
   def new
@@ -51,13 +51,14 @@ class ItemsController < ApplicationController
   end
 
   def move_to_show
+    @item = Item.find(params[:id])
     redirect_to action: :show if current_user.id != @item.user_id
   end
 
   def item_params
     params.require(:item).permit(
       :name, :text, :category_id, :status_id, :price, :image,
-      :delivery_chager_id, :delivery_area_id, :delivery_days_id
+      :delivery_chager_id, :prefecture_id, :delivery_days_id
     ).merge(user_id: current_user.id)
   end
 

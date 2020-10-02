@@ -2,12 +2,12 @@ FactoryBot.define do
   factory :item do
     name                 { Faker::Name.name }
     text                 { Faker::Lorem.sentence }
-    category_id          { '2' }
-    status_id            { '2' }
+    category_id          { Faker::Number.between(from: 2, to: 11) }
+    status_id            { Faker::Number.between(from: 2, to: 7) }
     price                { '5000' }
-    delivery_chager_id   { '2' }
-    delivery_area_id     { '2' }
-    delivery_days_id     { '2' }
+    delivery_chager_id   { Faker::Number.between(from: 2, to: 2) }
+    prefecture_id        { Faker::Number.between(from: 2, to: 48) }
+    delivery_days_id     { Faker::Number.between(from: 2, to: 3) }
     association :user
 
     after(:build) do |item|
