@@ -25,7 +25,6 @@ Things you may want to cover:
 
 
 ## users テーブル
-
 | Column           | Type   | Options     |
 | ---------------- | ------ | ----------- |
 | nickname         | string | null: false |
@@ -37,13 +36,12 @@ Things you may want to cover:
 | birthday         | date   | null: false |
 
 ### Association
-
 - has_many :items
 - has_many :coments
 - has_many :purchases
 
-## items テーブル
 
+## items テーブル
 | Column             | Type       | Options                       |
 | ------------------ | ---------- | ----------------------------- |
 | name               | string     | null: false                   |
@@ -57,13 +55,13 @@ Things you may want to cover:
 | user               | references | null: false, forgen_key: true |
 
 ### Association
-
 - belongs_to :user
 - has_many :comments
 - has_one :purchase
+- has_many:tags, through: :item_tag_relation
+
 
 ## comments テーブル
-
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | comment | text       |                                |
@@ -71,26 +69,22 @@ Things you may want to cover:
 | room    | references | null: false, foreign_key: true |
 
 ### Association
-
 - belongs_to :user
 - belongs_to :item
 
 
 ## purchases テーブル
-
 | Column | Type       | Options                       |
 | ------ | ---------- | ----------------------------- |
 | user   | references | null: false, forgen_key: true |
 | item   | references | null: false, forgen_key: true |
 
 ### Association
-
 - belongs_to :user
 - belongs_to :item
 - has_one :ship_address
 
 ## ship_addresses テーブル
-
 | Column        | Type       | Options                       |
 | ------------- | ---------- | ----------------------------- |
 | post_code     | string     | null: false                   |
@@ -101,7 +95,27 @@ Things you may want to cover:
 | telephone     | string     | null: false                   |
 | purchase      | references | null: false, forgen_key: true |
 
+### Association
+- belongs_to :purchase
+
+
+## Tags テーブル
+| Column | Type       | Options                       |
+| ------ | ---------- | ----------------------------- |
+| name   | string     | uniqueness: ture              |
 
 ### Association
+- has_many :items, through: :item_tag_relations
 
-- belongs_to :purchase
+
+## item_tag_relations テーブル
+| Column   | Type       | Options                       |
+| -------- | ---------- | ----------------------------- |
+| item_id  | references | null: false, forgen_key: true |
+| tag_id   | references | null: false, forgen_key: true |
+
+### Association
+-belongs_to :item
+-belongs_to :tag
+
+
