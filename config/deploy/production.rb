@@ -60,4 +60,4 @@
 #     # password: "please use keys"
 #   }
 
-server '用意したElastic IP', user: 'ec2-user', roles: %w{app db web}
+server '54.150.215.33', user: 'ec2-user', roles: %w{app db web}
