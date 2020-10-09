@@ -100,21 +100,14 @@
          <br>
           不快な言葉遣いなどは利用制限や退会処分となることがあります。
         </p>
-          <div>
-            <%= f.submit 'コメントする', class:"comment-btn" %>
-         </div>
+        <%= f.submit 'コメントする', class:"comment-btn" %>
       <% end %>
     <% end %>
   </div>
   <%# コメント %>
-
   <div class="links">
-    <a href="#" class="change-item-btn">
-      ＜ 前の商品
-    </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
-    </a>
+      <%= link_to "＜ 前の商品", item_path(@item.previous), class: "change-item-btn" if @item.previous %>
+      <%= link_to "次の商品 ＞", item_path(@item.next), class:"change-item-btn" if @item.next %>
   </div>
   <a href="#" class='another-item'><%= @item.category.name %>をもっと見る</a>
 </div>
